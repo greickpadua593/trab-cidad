@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mente em Equilíbrio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+background:#07111f;
+color:white;
+overflow-x:hidden;
+
+}
+
+/* FUNDO */
+
+body::before{
+
+content:"";
+position:fixed;
+width:600px;
+height:600px;
+background:#6c63ff;
+filter:blur(180px);
+opacity:.25;
+top:-200px;
+left:-200px;
+z-index:-1;
+
+}
+
+body::after{
+
+content:"";
+position:fixed;
+width:500px;
+height:500px;
+background:#00e5ff;
+filter:blur(180px);
+opacity:.20;
+bottom:-200px;
+right:-200px;
+z-index:-1;
+
+}
+
+/* MENU */
+
+header{
+
+position:fixed;
+top:0;
+width:100%;
+height:80px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:0 8%;
+
+background:rgba(7,17,31,.65);
+
+backdrop-filter:blur(15px);
+
+z-index:100;
+
+}
+
+.logo{
+
+font-size:25px;
+font-weight:800;
+
+}
+
+.logo span{
+
+color:#6c63ff;
+
+}
+
+nav a{
+
+text-decoration:none;
+color:white;
+margin-left:25px;
+font-size:14px;
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:#00e5ff;
+
+}
+
+/* HERO */
+
+.hero{
+
+min-height:100vh;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:120px 8% 50px;
+
+}
+
+.hero-text{
+
+max-width:600px;
+
+}
+
+.hero h1{
+
+font-size:60px;
+line-height:1.1;
+
+}
+
+.hero h1 span{
+
+background:linear-gradient(90deg,#6c63ff,#00e5ff);
+color:transparent;
+
+}
+
+.hero p{
+
+margin-top:25px;
+font-size:18px;
+color:#cbd5e1;
+
+}
+
+.btn{
+
+display:inline-block;
+
+margin-top:35px;
+
+padding:15px 35px;
+
+border-radius:40px;
+
+background:linear-gradient(90deg,#6c63ff,#00e5ff);
+
+text-decoration:none;
+
+color:white;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.btn:hover{
+
+transform:scale(1.05);
+
+}
+
+.hero-card{
+
+width:380px;
+height:420px;
+
+border-radius:30px;
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.15);
+
+backdrop-filter:blur(20px);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:30px;
+
+text-align:center;
+
+animation:float 4s infinite ease-in-out;
+
+}
+
+.hero-card h2{
+
+font-size:32px;
+
+}
+
+.hero-card p{
+
+margin-top:20px;
+color:#cbd5e1;
+
+}
+
+@keyframes float{
+
+50%{
+
+transform:translateY(-20px);
+
+}
+
+}
+
+/* SEÇÕES */
+
+section{
+
+padding:100px 8%;
+
+}
+
+.title{
+
+font-size:42px;
+margin-bottom:30px;
+
+}
+
+.text{
+
+max-width:850px;
+
+color:#cbd5e1;
+
+line-height:1.9;
+
+font-size:18px;
+
+}
+
+/* CARDS */
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
+
+margin-top:50px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.15);
+
+backdrop-filter:blur(20px);
+
+padding:35px;
+
+border-radius:30px;
+
+transition:.4s;
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.card h3{
+
+font-size:50px;
+
+background:linear-gradient(90deg,#6c63ff,#00e5ff);
+
+
+
+color:transparent;
+
+}
+
+.card p{
+
+margin-top:15px;
+
+color:#cbd5e1;
+
+line-height:1.8;
+
+}
+
+/* GRAFICO */
+
+.grafico{
+
+margin-top:50px;
+
+padding:40px;
+
+border-radius:30px;
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.15);
+
+backdrop-filter:blur(20px);
+
+}
+
+canvas{
+
+max-width:100%;
+
+}
+
+@media(max-width:800px){
+
+.hero{
+
+flex-direction:column;
+
+}
+
+.hero h1{
+
+font-size:42px;
+
+}
+
+.hero-card{
+
+margin-top:40px;
+width:100%;
+
+}
+
+nav{
+
+display:none;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+Mente <span>em Equilíbrio</span>
+
+</div>
+
+<nav>
+
+<a href="#inicio">Início</a>
+<a href="#pesquisa">Pesquisa</a>
+<a href="#dados">Dados</a>
+<a href="#graficos">Gráficos</a>
+<a href="#solucao">Solução</a>
+
+</nav>
+
+</header>
+
+<section class="hero" id="inicio">
+
+<div class="hero-text">
+
+<h1>
+
+Saúde mental dos <span>estudantes</span>
+
+</h1>
+
+<p>
+
+Uma análise baseada em dados públicos para compreender como as relações sociais influenciam o bem-estar emocional dos jovens e propor soluções para um ambiente escolar mais saudável.
+
+</p>
+
+<a class="btn" href="#pesquisa">
+
+Ver pesquisa
+
+</a>
+
+</div>
+
+<div class="hero-card">
+
+<div>
+
+<h2>
+
+🧠
+
+<br>
+
+Mente em Equilíbrio
+
+</h2>
+
+<p>
+
+Projeto de Ciência de Dados + Inteligência Artificial
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="pesquisa">
+
+<h2 class="title">
+
+Sobre a pesquisa
+
+</h2>
+
+<p class="text">
+
+Este projeto utiliza dados públicos relacionados aos estudantes do 9º ano para analisar fatores que podem impactar a saúde mental e o bem-estar emocional. A pesquisa destaca a importância das relações sociais, amizades e apoio dentro do ambiente escolar.
+
+</p>
+
+</section>
+
+<section id="dados">
+
+<h2 class="title">
+
+Dados analisados
+
+</h2>
+
+<p class="text">
+
+Foram utilizados dados referentes aos anos de 2012, 2015 e 2019, permitindo observar mudanças ao longo do tempo e compreender melhor os indicadores sociais dos estudantes.
+
+</p>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>2012</h3>
+
+<p>
+
+Primeira coleta utilizada no estudo.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>2015</h3>
+
+<p>
+
+Comparação intermediária dos indicadores.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>2019</h3>
+
+<p>
+
+Ano mais recente presente na pesquisa.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Curitiba</h3>
+
+<p>
+
+Cidade escolhida como destaque principal do projeto.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="graficos">
+
+<h2 class="title">
+
+Evolução dos dados
+
+</h2>
+
+<p class="text">
+
+Os gráficos mostram a variação dos indicadores ao longo dos anos analisados.
+
+</p>
+
+<div class="grafico">
+
+<canvas id="grafico"></canvas>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">
+
+Fatores que influenciam a saúde mental
+
+</h2>
+
+<p class="text">
+
+Diversos fatores podem impactar o bem-estar dos estudantes. As relações sociais, a qualidade do ambiente escolar e o apoio emocional possuem papel importante na saúde mental dos jovens.
+
+</p>
+
+
+<div class="cards">
+
+<div class="card">
+
+<h3>🤝</h3>
+
+<p>
+
+Amizades e relações sociais saudáveis contribuem para o equilíbrio emocional.
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>🏫</h3>
+
+<p>
+
+O ambiente escolar influencia diretamente o desenvolvimento dos estudantes.
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>❤️</h3>
+
+<p>
+
+Rede de apoio familiar e emocional ajuda na prevenção de problemas psicológicos.
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>🧘</h3>
+
+<p>
+
+Hábitos saudáveis e equilíbrio entre estudo e lazer são essenciais.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="solucao">
+
+<h2 class="title">
+
+Nossa solução digital
+
+</h2>
+
+<p class="text">
+
+Criamos o projeto <strong>Mente em Equilíbrio</strong>, uma plataforma digital desenvolvida para apresentar dados, promover a conscientização sobre saúde mental e incentivar hábitos mais saudáveis entre os estudantes.
+
+</p>
+
+
+<div class="cards">
+
+<div class="card">
+
+<h3>📊</h3>
+
+<p>
+
+Visualização dos dados através de gráficos e indicadores.
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>🧠</h3>
+
+<p>
+
+Informações sobre saúde mental e bem-estar emocional.
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>💡</h3>
+
+<p>
+
+Uso da tecnologia para transformar dados em conhecimento.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<h2 class="title">
+
+Como a Inteligência Artificial ajudou
+
+</h2>
+
+<p class="text">
+
+A Inteligência Artificial foi utilizada como ferramenta de apoio durante o desenvolvimento do projeto. Ela auxiliou na organização das ideias, estruturação do site, análise dos dados e na criação das visualizações apresentadas.
+
+Dessa forma, foi possível desenvolver uma solução mais moderna, organizada e acessível.
+
+</p>
+
+</section>
+
+
+
+<section>
+
+<h2 class="title">
+
+Conclusão
+
+</h2>
+
+<p class="text">
+
+Os dados analisados mostram que aspectos sociais e emocionais possuem grande influência no bem-estar dos estudantes.
+
+Compreender esses fatores é importante para promover ambientes mais saudáveis, fortalecer as relações interpessoais e incentivar ações voltadas para a qualidade de vida e saúde mental dos jovens.
+
+</p>
+
+</section>
+
+
+
+<footer>
+
+<h2>
+
+🧠 Mente <span>em Equilíbrio</span>
+
+</h2>
+
+<p>
+
+Projeto desenvolvido para a disciplina de Ciência de Dados.
+
+</p>
+
+<p>
+
+Tema: Saúde Mental dos Estudantes
+
+</p>
+
+<p>
+
+Base de dados: Pesquisa pública (IBGE)
+
+</p>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('grafico');
+
+new Chart(ctx,{
+
+type:'line',
+
+data:{
+
+labels:['2012','2015','2019'],
+
+datasets:[{
+
+label:'Estudantes sem amigos próximos (%)',
+
+data:[8.5,9.8,8.7],
+
+borderColor:'#00e5ff',
+
+backgroundColor:'rgba(0,229,255,.15)',
+
+fill:true,
+
+tension:.4,
+
+borderWidth:4,
+
+pointRadius:6
+
+}]
+
+},
+
+options:{
+
+responsive:true,
+
+plugins:{
+
+legend:{
+
+labels:{
+
+color:'white'
+
+}
+
+}
+
+},
+
+scales:{
+
+x:{
+
+ticks:{
+
+color:'white'
+
+},
+
+grid:{
+
+color:'rgba(255,255,255,.1)'
+
+}
+
+},
+
+y:{
+
+ticks:{
+
+color:'white'
+
+},
+
+grid:{
+
+color:'rgba(255,255,255,.1)'
+
+}
+
+}
+
+}
+
+}
+
+});
+
+</script>
+</body>
+</html>

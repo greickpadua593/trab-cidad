@@ -1,0 +1,99 @@
+/* HERO */
+
+.hero h1 span{
+
+color:#6c63ff;
+
+}
+
+
+/* CARDS */
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
+
+margin-top:50px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.15);
+
+backdrop-filter:blur(20px);
+
+padding:35px;
+
+border-radius:30px;
+
+transition:.4s;
+
+min-height:180px;
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.card h3{
+
+font-size:50px;
+
+color:#6c63ff;
+
+font-weight:700;
+
+margin-bottom:20px;
+
+}
+
+.card p{
+
+margin-top:15px;
+
+color:#cbd5e1;
+
+line-height:1.8;
+
+}
+
+
+/* GRAFICO */
+
+.grafico{
+
+margin-top:50px;
+
+padding:40px;
+
+border-radius:30px;
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.15);
+
+backdrop-filter:blur(20px);
+
+height:450px;
+
+}
+
+canvas{
+
+width:100% !important;
+
+max-width:100%;
+
+display:block;
+
+}
